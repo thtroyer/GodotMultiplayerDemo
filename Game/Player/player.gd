@@ -223,7 +223,7 @@ func apply_physics(delta: float) -> void:
 	if state == enums.states.DEAD:
 		return
 	if not is_on_floor():
-		velocity.y += get_gravity() * delta
+		velocity.y += gravity() * delta
 		if velocity.y > stats.terminal_velocity:
 			velocity.y = stats.terminal_velocity
 		if state != enums.states.JUMPING and state != enums.states.LANDING:
@@ -311,7 +311,7 @@ func attack() -> void:
 	if MultiplayerManager.is_host:
 		MultiplayerManager.add_projectile(new_projectile)
 
-func get_gravity() -> int:
+func gravity() -> int:
 	if state == enums.states.FALLING:
 		return stats.fall_gravity
 	else:
